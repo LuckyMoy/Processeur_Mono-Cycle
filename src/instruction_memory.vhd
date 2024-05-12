@@ -2,14 +2,14 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity instruction_memory is
+entity INSTRUCTION_MEMORY is
     port(
-    PC: in std_logic_vector (31 downto 0);
-    Instruction: out std_logic_vector (31 downto 0)
+    PC:             in std_logic_vector (31 downto 0);
+    Instruction:    out std_logic_vector (31 downto 0)
     );
 end entity;
 
-architecture RTL of instruction_memory is
+architecture RTL of INSTRUCTION_MEMORY is
     type RAM64x32 is array (0 to 63) of std_logic_vector (31 downto 0);
 
     function init_mem return RAM64x32 is
@@ -33,5 +33,7 @@ architecture RTL of instruction_memory is
 
     signal mem: RAM64x32 := init_mem;
     begin
+
         Instruction <= mem(to_integer(unsigned (PC)));
+
 end architecture;

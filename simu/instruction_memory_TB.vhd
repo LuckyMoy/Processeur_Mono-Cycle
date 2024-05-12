@@ -2,12 +2,12 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
-entity instruction_memory_TB is
-end instruction_memory_TB;
+entity INSTRUCTION_MEMORY_TB is
+end INSTRUCTION_MEMORY_TB;
 
-architecture TB of instruction_memory_TB is
+architecture TB of INSTRUCTION_MEMORY_TB is
     -- Instantiation du composant à tester
-    component instruction_memory
+    component INSTRUCTION_MEMORY
         port(
             PC: in std_logic_vector (31 downto 0);
             Instruction: out std_logic_vector (31 downto 0)
@@ -20,8 +20,8 @@ architecture TB of instruction_memory_TB is
     signal Instruction     : std_logic_vector(31 downto 0);
 
 begin
-    -- Instance du instruction_memory
-    uut: instruction_memory
+    -- Instance du INSTRUCTION_MEMORY
+    uut: INSTRUCTION_MEMORY
         port map (
             PC => PC,
             Instruction => Instruction
