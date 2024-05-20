@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity INSTRUCTION_DECODER is
+entity UC is
     port(
         Clk, Reset:     in std_logic;
         Instruction:    in std_logic_vector (31 downto 0);
@@ -11,7 +11,7 @@ entity INSTRUCTION_DECODER is
         Imm8 :          out std_logic_vector(7 downto 0);
         nPCsel:         out std_logic;
         RegWr:          out std_logic;
-        RegSel          out std_logic;
+        RegSel:          out std_logic;
         ALUsrc:         out std_logic;
         MemWr:          out std_logic;
         ALUCtr:         out std_logic_vector (2 downto 0);
@@ -20,7 +20,7 @@ entity INSTRUCTION_DECODER is
     );
 end entity;
 
-architecture RTL of INSTRUCTION_DECODER is
+architecture RTL of UC is
     signal PSREn: std_logic := '0';
     signal PSR, Flags32 : std_logic_vector(31 downto 0) := (others => '0');
 

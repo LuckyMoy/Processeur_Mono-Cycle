@@ -11,6 +11,7 @@ ENTITY UT is
         RW, RA, RB  :  IN  STD_LOGIC_VECTOR(3 downto 0);
 
 		COM_Mux_im 	:  IN  STD_LOGIC;
+		COM_Mux_reg	:  IN  STD_LOGIC;
 		COM_Mux_out :  IN  STD_LOGIC;
 
         OP          :  IN  STD_LOGIC_VECTOR(2 downto 0);
@@ -104,6 +105,7 @@ ARCHITECTURE RTL OF UT IS
     -- MUX
     -- signal COM_Mux_im, COM_Mux_out  : std_logic;
     signal MUX_Im_out              : std_logic_vector(31 downto 0);
+    signal MUX_Reg_out             : std_logic_vector(3 downto 0);
 
     -- Imm
     -- signal Im       : std_logic_vector(7 downto 0);
@@ -128,7 +130,7 @@ BEGIN
             Reset  => Reset,
             W      => W,
             RA     => RA,
-            RB     => RB,
+            RB     => MUX_Reg_out,
             RW     => RW,
             WE     => WE,
             A      => A,
@@ -169,6 +171,18 @@ BEGIN
             A => B,
             B => Im32,
             S => MUX_Im_out
+        );
+
+    -- Instance du MUX Reg
+    mux_Reg_inst : MUX
+        generic map (
+            N => 4  -- Spécifie que les vecteurs doivent être de 32 bits (facultatif : par défaut 32)
+        )
+        port map (
+            COM => COM_Mux_im,
+            A => Rb,
+            B => Rw,
+            S => MUX_Reg_out
         );
 
     -- Instance du MUX out

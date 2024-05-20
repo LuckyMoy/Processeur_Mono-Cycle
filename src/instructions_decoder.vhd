@@ -53,9 +53,20 @@ architecture RTL of INSTRUCTION_DECODER is
             end case;
         end process;
 
-        process(instr_courrante)
+        process(instr_courante)
         begin
             case instr_courante is
+                when NONE =>
+                    nPCsel <= '0';
+                    RegWr  <= '0';
+                    RegSel <= '0'; 
+                    ALUsrc <= '0';
+                    MemWr  <= '0';
+                    ALUCtr <= "000";
+                    PSREn  <= '0';
+                    WrSrc  <= '0';
+                    RegAff <= '0';
+
                 when MOV =>
                     nPCsel <= '0';
                     RegWr  <= '1';

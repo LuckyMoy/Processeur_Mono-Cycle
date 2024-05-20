@@ -16,6 +16,7 @@ architecture TB of UT_TB is
             RW, RA, RB  :  IN  STD_LOGIC_VECTOR(3 downto 0);
 
             COM_Mux_im 	:  IN  STD_LOGIC;
+            COM_Mux_Reg :  IN  STD_LOGIC;
             COM_Mux_out :  IN  STD_LOGIC;
 
             OP          :  IN  STD_LOGIC_VECTOR(2 downto 0);
@@ -70,6 +71,7 @@ begin
             RW          => RW,
 
             COM_Mux_im 	=> COM_Mux_im,
+            COM_Mux_Reg => '0',
             COM_Mux_out	=> COM_Mux_out,
 
             OP          => OP,
