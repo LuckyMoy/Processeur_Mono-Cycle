@@ -2,16 +2,17 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity PC_REG is
+entity PSR_REG is
     port(
         Clk : in STD_LOGIC;
         Reset : in STD_LOGIC;
+        WrEn : in STD_LOGIC;
         E: in std_logic_vector (31 downto 0);
         S: out std_logic_vector (31 downto 0)
     );
 end entity;
 
-architecture RTL of PC_REG is
+architecture RTL of PSR_REG is
 
     begin
         process(Clk, Reset)
@@ -19,7 +20,7 @@ architecture RTL of PC_REG is
 
         if Reset = '1' then
             S <= (others => '0');
-        elsif rising_edge(Clk) then
+        elsif rising_edge(Clk) and WrEn = '1' then
             S <= E;
         end if;
 

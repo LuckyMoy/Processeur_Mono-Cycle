@@ -1,0 +1,9 @@
+INSTRUCTION ;nPCSel ;RegWr ;ALUSrc ;ALUCtr ;PSREn ;MemWr ;WrSrc ;RegSel ;RegAff
+ADDi        ;     0 ;    1 ;     1 ;   000 ;    0 ;    0 ;    0 ;     0 ;     0
+ADDr        ;     0 ;    1 ;     0 ;   000 ;    0 ;    0 ;    0 ;     0 ;     0
+BAL         ;     1 ;    0 ;     0 ;   000 ;    0 ;    0 ;    0 ;     0 ;     0
+BLT         ;     1 ;    0 ;     0 ;   000 ;    0 ;    0 ;    0 ;     0 ;     0
+CMP         ;     0 ;    0 ; bit # ;   010 ;    1 ;    0 ;    0 ;     0 ;     0
+LDR         ;     0 ;    1 ;     1 ;   000 ;    0 ;    0 ;    1 ;     1 ;     0
+MOV         ;     0 ;    1 ; bit # ;   001 ;    0 ;    0 ;    0 ;     0 ;     0
+STR         ;     0 ;    0 ;     1 ;   000 ;    0 ;    1 ;    1 ;     1 ;     0
