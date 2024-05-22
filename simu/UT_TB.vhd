@@ -9,7 +9,7 @@ architecture TB of UT_TB is
     -- Instantiation du composant à tester
     component UT
         PORT (
-            CLOCK_50 	:  IN  STD_LOGIC;
+            Clk 	:  IN  STD_LOGIC;
             Reset    	:  IN  STD_LOGIC;
 
             RegWr       :  IN  STD_LOGIC;
@@ -62,7 +62,7 @@ begin
     -- Instance de l'UT
     reg_bench_inst: UT
         port map (
-            CLOCK_50 	=> Clk,
+            Clk 	=> Clk,
             Reset    	=> Reset,
 
             RegWr       => WE,

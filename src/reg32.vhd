@@ -2,7 +2,7 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity PSR_REG is
+entity REG32 is
     port(
         Clk : in STD_LOGIC;
         Reset : in STD_LOGIC;
@@ -12,7 +12,7 @@ entity PSR_REG is
     );
 end entity;
 
-architecture RTL of PSR_REG is
+architecture RTL of REG32 is
 
     begin
         process(Clk, Reset)

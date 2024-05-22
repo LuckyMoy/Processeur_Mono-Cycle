@@ -4,7 +4,7 @@ USE ieee.std_logic_1164.all;
 ENTITY UT is
 	PORT
 	(
-		CLOCK_50 	:  IN  STD_LOGIC;
+		Clk 	    :  IN  STD_LOGIC;
 		Reset   	:  IN  STD_LOGIC;
 
         RegWr       :  IN  STD_LOGIC;
@@ -87,8 +87,6 @@ ARCHITECTURE RTL OF UT IS
         );
     end component;
 
-	-- RB
-    signal Clk   : std_logic;
     -- signal Reset : std_logic;
     
     -- Reg Bench
@@ -117,7 +115,6 @@ ARCHITECTURE RTL OF UT IS
 
 BEGIN 
 
-    Clk <= CLOCK_50;
     WE <= RegWr;
     busA <= A;
     busB <= B;
@@ -144,10 +141,10 @@ BEGIN
         A => A,
         B => MUX_Im_out,
         S => ALUout,
-        N => Flags(0),
-        Z => Flags(1),
-        C => Flags(2),
-        V => Flags(3)
+        N => Flags(3),
+        Z => Flags(2),
+        C => Flags(1),
+        V => Flags(0)
     );
 
     -- Instance du DATA_MEM

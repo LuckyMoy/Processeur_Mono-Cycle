@@ -9,6 +9,7 @@ entity UC is
         Flags:          in std_logic_vector (3 downto 0);
         Rd, Rn, Rm:     out std_logic_vector (3 downto 0);
         Imm8 :          out std_logic_vector(7 downto 0);
+        Imm24 :          out std_logic_vector(23 downto 0);
         nPCsel:         out std_logic;
         RegWr:          out std_logic;
         RegSel:          out std_logic;
@@ -24,7 +25,7 @@ architecture RTL of UC is
     signal PSREn: std_logic := '0';
     signal PSR, Flags32 : std_logic_vector(31 downto 0) := (others => '0');
 
-    component PSR_REG is
+    component REG32 is
         port(
             Clk : in STD_LOGIC;
             Reset : in STD_LOGIC;
@@ -55,9 +56,10 @@ architecture RTL of UC is
         Rn <= Instruction(19 downto 16);
         Rm <= Instruction(3 downto 0);
         Imm8 <= Instruction(7 downto 0);
+        Imm24 <= Instruction(23 downto 0);
         Flags32(31 downto 28) <= Flags;
 
-        inst_reg : PSR_REG
+        inst_reg : REG32
         port map(
             Clk => Clk,
             Reset => Reset,

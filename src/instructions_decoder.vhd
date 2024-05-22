@@ -138,7 +138,7 @@ architecture RTL of INSTRUCTION_DECODER is
                     ALUCtr <= "000";
                     PSREn  <= '0';
                     WrSrc  <= '0';
-                    RegAff <= '0';
+                    RegAff <= '1';
 
                 when BAL =>
                     nPCsel <= '1';
@@ -152,7 +152,7 @@ architecture RTL of INSTRUCTION_DECODER is
                     RegAff <= '0';
 
                 when BLT =>
-                    nPCsel <= '1';
+                    nPCsel <= RegPSR(31);
                     RegWr  <= '0';
                     RegSel <= '0';
                     ALUsrc <= '0';

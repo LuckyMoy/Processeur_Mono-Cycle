@@ -24,6 +24,18 @@ architecture RTL of DATA_MEM is
         for i in 63 downto 0 loop
             result(i) := (others=>'0');
         end loop;
+        -- Mémoire Chargée pour test
+        result (32):=x"00000008";
+        result (33):=x"00000008";
+        result (34):=x"00000008";
+        result (35):=x"00000008";
+        result (36):=x"00000030";
+        result (37):=x"00000008";
+        result (38):=x"00000008";
+        result (39):=x"00000008";
+        result (40):=x"00000008";
+        result (41):=x"00000010";
+        result (42):=x"00000020";
         return result;
     end;
 

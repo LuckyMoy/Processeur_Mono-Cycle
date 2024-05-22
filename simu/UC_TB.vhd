@@ -14,6 +14,7 @@ architecture TB of UC_TB is
             Flags:          in std_logic_vector (3 downto 0);
             Rd, Rn, Rm:     out std_logic_vector (3 downto 0);
             Imm8 :          out std_logic_vector(7 downto 0);
+            Imm24 :          out std_logic_vector(23 downto 0);
             nPCsel:         out std_logic;
             RegWr:          out std_logic;
             RegSel:          out std_logic;
@@ -30,9 +31,10 @@ architecture TB of UC_TB is
     -- Signaux pour la simulation
     signal Clk, Reset : std_logic;
     signal Instruction     : std_logic_vector(31 downto 0);
-    signal Flags : std_logic_vector(3 downto 0) := (others => '0');
+    signal Flags : std_logic_vector(3 downto 0) := (others => '1');
     signal Rd, Rn, Rm : std_logic_vector(3 downto 0);
     signal Imm8 : std_logic_vector(7 downto 0);
+    signal Imm24 : std_logic_vector(23 downto 0);
 
     signal ALUCtr     : std_logic_vector(2 downto 0);
     signal nPCsel, RegWr, RegSel, ALUsrc, MemWr, WrSrc, RegAff : std_logic;
@@ -50,6 +52,7 @@ begin
             Rn => Rn,
             Rm => Rm,
             Imm8  => Imm8 ,
+            Imm24  => Imm24 ,
             nPCsel => nPCsel,
             RegWr => RegWr,
             RegSel => RegSel,
