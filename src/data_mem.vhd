@@ -25,17 +25,17 @@ architecture RTL of DATA_MEM is
             result(i) := (others=>'0');
         end loop;
         -- Mémoire Chargée pour test
-        result (32):=x"00000008";
-        result (33):=x"00000008";
-        result (34):=x"00000008";
-        result (35):=x"00000008";
-        result (36):=x"00000030";
-        result (37):=x"00000008";
-        result (38):=x"00000008";
-        result (39):=x"00000008";
-        result (40):=x"00000008";
-        result (41):=x"00000010";
-        result (42):=x"00000020";
+        result (32):=x"00000001";
+        result (33):=x"00000100";
+        result (34):=x"00000200";
+        result (35):=x"00000200";
+        result (36):=x"00080000";
+        result (37):=x"00000000";
+        result (38):=x"00000000";
+        result (39):=x"00000000";
+        result (40):=x"00000001";
+        result (41):=x"00080000";
+        result (42):=x"00000000";
         return result;
     end;
 
