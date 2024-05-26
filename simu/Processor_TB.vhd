@@ -56,6 +56,9 @@ begin
         wait for 1 ns;
         Reset <= '0';  -- Activation de la réinitialisation
 
+        wait for 1050 ns;
+        assert(afficheur = x"00100502") report "Erreur de valeur sur registre afficheur, verrifier somme des mem reg 0X20 à 0x29" severity Error;
+
         report "Fin des tests";
 
         -- Fin du test

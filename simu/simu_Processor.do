@@ -22,4 +22,4 @@ add wave -position end sim:/*
 # Configurer le radix en hexa pour chaque signal
 radix -hexadecimal 
 
-run 1200 ns
+run 1100 ns

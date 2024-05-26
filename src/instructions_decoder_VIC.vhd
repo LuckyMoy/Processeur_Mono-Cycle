@@ -2,10 +2,11 @@ library IEEE;
 use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
-entity INSTRUCTION_DECODER is
+entity INSTRUCTION_DECODER_VIC is
     port(
     Instruction:    in std_logic_vector (31 downto 0);
     RegPSR:         in std_logic_vector (31 downto 0);
+
     nPCsel:         out std_logic;
     RegWr:          out std_logic;
     RegSel:         out std_logic;
@@ -14,12 +15,14 @@ entity INSTRUCTION_DECODER is
     ALUCtr:         out std_logic_vector (2 downto 0);
     PSREn:          out std_logic;
     WrSrc:          out std_logic;
+    LRen:           out std_logic;
+    IRQ_END:        out std_logic;
     RegAff:         out std_logic
     );
 end entity;
 
-architecture RTL of INSTRUCTION_DECODER is
-    type enum_instruction is (MOV, ADDi, ADDr, CMP, LDR, STR, BAL, BLT, NONE);
+architecture RTL of INSTRUCTION_DECODER_VIC is
+    type enum_instruction is (MOV, ADDi, ADDr, CMP, LDR, STR, BAL, BLT, BX, NONE);
     signal instr_courante: enum_instruction;
 
     
@@ -45,6 +48,9 @@ architecture RTL of INSTRUCTION_DECODER is
 
                 when x"E60" =>
                     instr_courante <= STR;
+
+                when x"EB0" =>
+                    instr_courante <= BX;
 
                 when others => null;
             end case;
@@ -75,6 +81,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when MOV =>
                     nPCsel <= '0';
@@ -86,6 +94,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when ADDi =>
                     nPCsel <= '0';
@@ -97,6 +107,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when ADDr =>
                     nPCsel <= '0';
@@ -108,6 +120,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when CMP =>
                     nPCsel <= '0';
@@ -119,6 +133,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '1';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when LDR =>
                     nPCsel <= '0';
@@ -136,6 +152,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '1';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when STR =>
                     nPCsel <= '0';
@@ -148,6 +166,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '1';
+                    LRen   <='0';
+                    IRQ_END <= '0';
 
                 when BAL =>
                     nPCsel <= '1';
@@ -159,6 +179,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <= '1';
+                    IRQ_END <= '0';
 
                 when BLT =>
                     nPCsel <= RegPSR(31);
@@ -170,6 +192,21 @@ architecture RTL of INSTRUCTION_DECODER is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '0';
+
+                when BX =>
+                    nPCsel <= '0';
+                    RegWr  <= '0';
+                    RegSel <= '0';
+                    ALUsrc <= '0';
+                    MemWr  <= '0';
+                    ALUCtr <= "000";
+                    PSREn  <= '0';
+                    WrSrc  <= '0';
+                    RegAff <= '0';
+                    LRen   <='0';
+                    IRQ_END <= '1';
             end case;
         end process;
 
