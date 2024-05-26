@@ -50,7 +50,7 @@ begin
     --traitement
     ram_block(24) := x"E3A05010"; -- MOV R5,0x10 ; --R5 <= 0x10
     ram_block(25) := x"E6154000"; -- LDR R4,0(R5) ; --R4 <= MEM[R5]
-    ram_block(26) := x"E2844002"; -- ADD R4,R4,2 ; --R4 <= R1 + 2
+    ram_block(26) := x"E28440FF"; -- ADD R4,R4,2 ; --R4 <= R1 + 2
     ram_block(27) := x"E6054000"; -- STR R4,0(R5) ; --MEM[R5] <= R4
     -- restauration du contexte
     ram_block(28) := x"E61F5000";-- LDR R5,0(R15) ; --R5 <= MEM[R15]

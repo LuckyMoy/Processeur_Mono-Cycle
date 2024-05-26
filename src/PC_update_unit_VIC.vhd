@@ -144,11 +144,9 @@ architecture RTL of PC_UPDATE_UNIT_VIC is
 
     PC <= PC_out;
 
-    process(Clk)
-    begin
-        if rising_edge(Clk) then
-            IRQ_SERV <= IRQ;
-        end if;
+    process(IRQ)
+    begin  
+        IRQ_SERV <= IRQ;
     end process;
 
 end architecture;
