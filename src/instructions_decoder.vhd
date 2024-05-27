@@ -94,7 +94,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     ALUsrc <= '1';
                     MemWr  <= '0';
                     ALUCtr <= "000";
-                    PSREn  <= '0';
+                    -- PSREn  <= '0';
+                    PSREn  <= Instruction(20);
                     WrSrc  <= '0';
                     RegAff <= '0';
 
@@ -105,7 +106,8 @@ architecture RTL of INSTRUCTION_DECODER is
                     ALUsrc <= '0';
                     MemWr  <= '0';
                     ALUCtr <= "000";
-                    PSREn  <= '0';
+                    -- PSREn  <= '0';
+                    PSREn  <= Instruction(20);
                     WrSrc  <= '0';
                     RegAff <= '0';
 

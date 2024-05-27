@@ -104,7 +104,8 @@ architecture RTL of INSTRUCTION_DECODER_VIC is
                     ALUsrc <= '1';
                     MemWr  <= '0';
                     ALUCtr <= "000";
-                    PSREn  <= '0';
+                    -- PSREn  <= '0';
+                    PSREn  <= Instruction(20);
                     WrSrc  <= '0';
                     RegAff <= '0';
                     LRen   <='0';
@@ -117,7 +118,8 @@ architecture RTL of INSTRUCTION_DECODER_VIC is
                     ALUsrc <= '0';
                     MemWr  <= '0';
                     ALUCtr <= "000";
-                    PSREn  <= '0';
+                    -- PSREn  <= '0';
+                    PSREn  <= Instruction(20);
                     WrSrc  <= '0';
                     RegAff <= '0';
                     LRen   <='0';
@@ -179,7 +181,7 @@ architecture RTL of INSTRUCTION_DECODER_VIC is
                     PSREn  <= '0';
                     WrSrc  <= '0';
                     RegAff <= '0';
-                    LRen   <= '1';
+                    LRen   <= '0';
                     IRQ_END <= '0';
 
                 when BLT =>
