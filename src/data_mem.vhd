@@ -21,7 +21,10 @@ architecture RTL of DATA_MEM is
     function init_Mem return table is
         variable result : table;
         begin
-        for i in 63 downto 0 loop
+        for i in 31 downto 0 loop
+            result(i) := (others=>'0');
+        end loop;
+        for i in 63 downto 54 loop
             result(i) := (others=>'0');
         end loop;
         -- Mémoire Chargée pour test
@@ -35,7 +38,20 @@ architecture RTL of DATA_MEM is
         result (39):=x"00000000";
         result (40):=x"00000001";
         result (41):=x"00080000";
-        result (42):=x"00000000";
+
+        -- "Hello World!"
+        result (16):=x"00000048";
+        result (17):=x"00000065";
+        result (18):=x"0000006C";
+        result (19):=x"0000006C";
+        result (20):=x"0000006F";
+        result (21):=x"00000020";
+        result (22):=x"00000057";
+        result (23):=x"0000006F";
+        result (24):=x"00000072";
+        result (25):=x"0000006C";
+        result (26):=x"00000064";
+        result (27):=x"00000021";
         return result;
     end;
 
