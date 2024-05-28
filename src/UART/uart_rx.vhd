@@ -48,7 +48,6 @@ begin
                 Clear_fdiv <= '0';  
                 if Tick = '1' then
                     ShiftReg <= (others => '0');
-                    RxDone <= '0';
                     State_v <= "10";
                     BitCounter <= 0;
                 end if;
@@ -72,9 +71,9 @@ begin
                 if Tick = '1' then
                     if Rx = '1' then  
                         Data <= ShiftReg;
-                        RxError <= '1';
                         RxDone <= '1';  
                     else
+                        RxDone <= '1';  
                         RxError <= '1';
                     end if;
                     State_v <= "00";
