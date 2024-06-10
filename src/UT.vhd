@@ -22,7 +22,7 @@ ENTITY UT is
 
         Flags       :  OUT STD_LOGIC_VECTOR(3 downto 0);
 
-        busA, busB, busW : OUT STD_LOGIC_VECTOR(31 downto 0)
+        busA, busB, busW : OUT STD_LOGIC_VECTOR(31 downto 0) -- debug
 
 	);
 END entity;

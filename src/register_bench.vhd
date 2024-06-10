@@ -11,7 +11,7 @@ entity REG_BENCH is
         RB           : in std_logic_vector(3 downto 0);
         RW           : in std_logic_vector(3 downto 0);
         WE           : in std_logic;
-        W_out        : out std_logic_vector(31 downto 0);
+        W_out        : out std_logic_vector(31 downto 0);  -- debug
         A            : out std_logic_vector(31 downto 0);
         B            : out std_logic_vector(31 downto 0)
     );

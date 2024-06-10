@@ -31,7 +31,7 @@ architecture TB of UC_TB is
     -- Signaux pour la simulation
     signal Clk, Reset : std_logic;
     signal Instruction     : std_logic_vector(31 downto 0);
-    signal Flags : std_logic_vector(3 downto 0) := (others => '1');
+    signal Flags : std_logic_vector(3 downto 0) := (others => '0');
     signal Rd, Rn, Rm : std_logic_vector(3 downto 0);
     signal Imm8 : std_logic_vector(7 downto 0);
     signal Imm24 : std_logic_vector(23 downto 0);
@@ -108,6 +108,15 @@ begin
         report "CMP R1,0x2A";
         wait for 20 ns;
 
+        Instruction <= x"BAFFFFFB";-- 0x6 -- BLT loop -- PC =PC+1+(-5) si N = 1
+        report "BLT loop";
+        wait for 20 ns;
+
+        Instruction <= x"E6012000";-- 0x7 -- STR R2,0(R1) -- DATAMEM[R1] = R2
+        report "STR R2,0(R1)";
+        wait for 20 ns;
+
+        Flags <= "1000";
         Instruction <= x"BAFFFFFB";-- 0x6 -- BLT loop -- PC =PC+1+(-5) si N = 1
         report "BLT loop";
         wait for 20 ns;

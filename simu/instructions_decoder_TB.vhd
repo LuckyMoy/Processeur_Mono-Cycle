@@ -28,6 +28,7 @@ architecture TB of INSTRUCTION_DECODER_TB is
     -- Signaux pour la simulation
     signal Instruction     : std_logic_vector(31 downto 0);
 
+    signal RegPSR     : std_logic_vector(2 downto 0) := (others => '0');
     signal ALUCtr     : std_logic_vector(2 downto 0);
     signal nPCsel, RegWr, RegSel, ALUsrc, MemWr, WrSrc, RegAff, PSREn : std_logic;
 
@@ -37,7 +38,7 @@ begin
     reg_bench_inst: INSTRUCTION_DECODER
         port map (
             Instruction => Instruction,
-            RegPSR => (others => '0'),
+            RegPSR => RegPSR,
             nPCsel => nPCsel,
             RegWr => RegWr,
             RegSel => RegSel,
@@ -86,6 +87,11 @@ begin
 
         Instruction <= x"E6012000";-- 0x7 -- STR R2,0(R1) -- DATAMEM[R1] = R2
         report "STR R2,0(R1)";
+        wait for 20 ns;
+
+        Instruction <= x"BAFFFFFB";-- 0x6 -- BLT loop nouveau test avec psr différent
+        RegPSR(31) <= '1';
+        report "BLT loop";
         wait for 20 ns;
 
         Instruction <= x"EAFFFFF7";-- 0x8 -- BAL main -- PC=PC+1+(-9)
