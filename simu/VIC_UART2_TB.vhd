@@ -68,27 +68,27 @@ begin
 
         --Etat initial
         assert (IRQ = '0') report "Etat initial: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000000") report "Etat initial: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000000") report "Etat initial: Erreur de valeur VICPC" severity error;
         wait for 20 ns;
 
         -- IRQ sur voie RX
         IRQ_RX <= '1';
         wait for 10 ns;
-        assert (IRQ = '1') report "IRQ sur voie 0: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000053") report "IRQ sur voie 0: Erreur de valeur IRQ" severity error;
+        assert (IRQ = '1') report "IRQ sur voie RX: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000035") report "IRQ sur voie RX: Erreur de valeur VICPC" severity error;
         
         -- fin IRQ sur voie TX
         IRQ_RX <= '0';
         wait for 10 ns;
-        assert (IRQ = '1') report "fin IRQ sur voie 0: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000053") report "fin IRQ sur voie 0: Erreur de valeur IRQ" severity error;
+        assert (IRQ = '1') report "fin IRQ sur voie R: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000035") report "fin IRQ sur voie R: Erreur de valeur VICPC" severity error;
         
         -- Acquitement
         IRQ_SERV <= '1';
         wait for 10 ns;
         IRQ_SERV <= '0';
         assert (IRQ = '0') report "Acquitement: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur VICPC" severity error;
         wait for 10 ns;
 
 
@@ -96,27 +96,27 @@ begin
         IRQ1 <= '1';
         wait for 20 ns;
         assert (IRQ = '1') report "IRQ sur voie 1: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000017") report "IRQ sur voie 1: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000017") report "IRQ sur voie 1: Erreur de valeur VICPC" severity error;
         
         -- IRQ sur voie 0 (priorité différé)
         IRQ0 <= '1';
         wait for 10 ns;
         assert (IRQ = '1') report "IRQ sur voie 0 (priorité différé): Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000009") report "IRQ sur voie 0 (priorité différé): Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000009") report "IRQ sur voie 0 (priorité différé): Erreur de valeur VICPC" severity error;
         
         -- fin IRQs
         IRQ0 <= '0';
         IRQ1 <= '0';
         wait for 10 ns;
         assert (IRQ = '1') report "fin IRQs: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000009") report "fin IRQs: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000009") report "fin IRQs: Erreur de valeur VICPC" severity error;
         
         -- Acquitement
         IRQ_SERV <= '1';
         wait for 10 ns;
         IRQ_SERV <= '0';
         assert (IRQ = '0') report "Acquitement: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur VICPC" severity error;
         wait for 10 ns;
 
         --IRQ sur voie 0 (priorité simultanée)
@@ -124,21 +124,21 @@ begin
         IRQ0 <= '1';
         wait for 10 ns;
         assert (IRQ = '1') report "IRQ sur voie 0 (priorité simultanée): Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000009") report "IRQ sur voie 0 (priorité simultanée): Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000009") report "IRQ sur voie 0 (priorité simultanée): Erreur de valeur VICPC" severity error;
         
         -- fin IRQs
         IRQ0 <= '0';
         IRQ1 <= '0';
         wait for 10 ns;
         assert (IRQ = '1') report "fin IRQs: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000009") report "fin IRQs: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000009") report "fin IRQs: Erreur de valeur VICPC" severity error;
         
         -- Acquitement
         IRQ_SERV <= '1';
         wait for 10 ns;
         IRQ_SERV <= '0';
         assert (IRQ = '0') report "Acquitement: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur VICPC" severity error;
         wait for 10 ns;
 
 
@@ -146,7 +146,7 @@ begin
         IRQ0 <= '1';
         wait for 10 ns;
         assert (IRQ = '1') report "IRQ sur voie 0 FRONT MONTANT: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000009") report "IRQ sur voie 0 FRONT MONTANT: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000009") report "IRQ sur voie 0 FRONT MONTANT: Erreur de valeur VICPC" severity error;
         
         -- Acquitement
         wait for 10 ns;
@@ -154,14 +154,14 @@ begin
         wait for 10 ns;
         IRQ_SERV <= '0';
         assert (IRQ = '0') report "Acquitement: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000000") report "Acquitement: Erreur de valeur VICPC" severity error;
         wait for 20 ns;
 
         -- IRQ sur voie 0 FRONT DESCENDANT
         IRQ0 <= '0';
         wait for 10 ns;
         assert (IRQ = '0') report "IRQ sur voie 0 FRONT DESCENDANT: Erreur de valeur IRQ" severity error;
-        assert (VIC_PC = x"00000000") report "IRQ sur voie 0 FRONT DESCENDANT: Erreur de valeur IRQ" severity error;
+        assert (VIC_PC = x"00000000") report "IRQ sur voie 0 FRONT DESCENDANT: Erreur de valeur VICPC" severity error;
         
 
         report "Fin des tests";

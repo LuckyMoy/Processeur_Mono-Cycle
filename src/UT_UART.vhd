@@ -128,6 +128,7 @@ ARCHITECTURE RTL OF UT_UART IS
     -- Data
     signal DataOut      : std_logic_vector(31 downto 0);
     signal Addr      : std_logic_vector(5 downto 0);
+    signal inf40      : std_logic;
     -- signal WrEn         : std_logic := '0';
 
 BEGIN 
@@ -184,7 +185,7 @@ BEGIN
             DataIn  => B,
             DataOut => DataOut,
             Addr    => Addr,
-            WrEn    => WrEn
+            WrEn    => inf40
         );
 
     -- Instance du MUX Im
@@ -234,11 +235,13 @@ BEGIN
         );
 
     -- Décodage d'adresse pour data Mem
-    process(ALUout)
+    process(ALUout, WrEn)
     begin
         if ALUout(31 downto 6) = "00000000000000000000000000" then
+            inf40 <= WrEn;
             Addr <= ALUout(5 downto 0);
         else
+            inf40 <= '0';
             Addr <= "000000";
         end if;
     end process;

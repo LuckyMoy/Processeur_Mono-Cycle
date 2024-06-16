@@ -90,7 +90,7 @@ begin
         B <= x"00000ABC";
         wait for clk_period;
         assert(S = x"00000000") report "Erreur de valeur sur S : soustraction zero" severity Error;
-        assert(Flags = "1000") report "Erreur de valeur sur Flags : soustraction zero" severity Error;
+        assert(Flags = "0110") report "Erreur de valeur sur Flags : soustraction zero" severity Error;
 
         -- pause
         A <= x"00000000";

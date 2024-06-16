@@ -68,7 +68,7 @@ architecture RTL of INSTRUCTION_DECODER_VIC is
             end case;
         end process;
 
-        process(instr_courante)
+        process(instr_courante, RegPSR, Instruction)
         begin
             case instr_courante is
                 when NONE =>

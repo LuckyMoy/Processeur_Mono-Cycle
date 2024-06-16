@@ -28,7 +28,7 @@ architecture TB of INSTRUCTION_DECODER_TB is
     -- Signaux pour la simulation
     signal Instruction     : std_logic_vector(31 downto 0);
 
-    signal RegPSR     : std_logic_vector(2 downto 0) := (others => '0');
+    signal RegPSR     : std_logic_vector(31 downto 0) := (others => '0');
     signal ALUCtr     : std_logic_vector(2 downto 0);
     signal nPCsel, RegWr, RegSel, ALUsrc, MemWr, WrSrc, RegAff, PSREn : std_logic;
 

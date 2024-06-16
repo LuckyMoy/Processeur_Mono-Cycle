@@ -23,7 +23,7 @@ architecture RTL of UART_TX is
 
 begin
 
-    process (Clk)
+    process (Clk, Reset)
     begin
         if Reset = '1' then  
             Tx <= '1';  

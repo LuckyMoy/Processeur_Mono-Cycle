@@ -71,6 +71,11 @@ begin
         wait for 1050 ns;
         assert(afficheur = x"00100502") report "Erreur de valeur sur registre afficheur, verrifier somme des mem reg 0X20 à 0x29" severity Error;
 
+        wait for 100 ns;
+        IRQ0 <= '1';
+        wait for 200 ns;
+        IRQ0 <= '0';
+
         report "Fin des tests";
 
         -- Fin du test
