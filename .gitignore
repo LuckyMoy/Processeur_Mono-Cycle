@@ -279,3 +279,5 @@ Quartus Project/output_files/TopLevel_UART_RX.sof
 Quartus Project/output_files/TopLevel_UART_TX1.sof
 Quartus Project/output_files/TopLevel_UART_TX2.sof
 .gitignore
+autres/Rapport de Projet CONDENSE - Processeur mono-cycle en VHDL.pdf
+.gitignore
